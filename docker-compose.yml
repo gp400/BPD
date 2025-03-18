@@ -1,0 +1,37 @@
+services:
+  mongo:
+    image: mongo
+    container_name: mongodb-container
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+    volumes:
+      - mongo_data:/data/db
+
+  microservicio1:
+    build:
+      context: ./microservice1
+    container_name: microservice1
+    # environment:
+    #   - MONGO_URI=mongodb://admin:admin123@mongodb:27017/admin
+    ports:
+      - "3001:3000"  # El puerto de tu microservicio1
+    depends_on:
+      - mongo
+
+  microservicio2:
+    build:
+      context: ./microservice2
+    container_name: microservice2
+    # environment:
+    #   - MONGO_URI=mongodb://admin:admin123@mongodb:27017/admin
+    ports:
+      - "3002:3000"  # El puerto de tu microservicio2
+    depends_on:
+      - mongo
+
+volumes:
+  mongo_data:

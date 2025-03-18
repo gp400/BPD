@@ -27,6 +27,12 @@ export const updateProfile = async (req: Request, res: Response) => {
         if (address !== null) updateObj.address = address;
 
         const profile = await Profile.findByIdAndUpdate(id, updateObj, { new: true, runValidators: true })
+
+        if (!profile){
+            res.status(404).json({ error: "Profile was not found" });
+            return;
+        }
+
         res.status(200).json(profile);
         return;
     } catch(error){

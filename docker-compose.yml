@@ -13,8 +13,8 @@ services:
 
   microservicio1:
     build:
-      context: ./microservice1
-    container_name: microservice1
+      context: ./microservicio1
+    container_name: microservicio1
     # environment:
     #   - MONGO_URI=mongodb://admin:admin123@mongodb:27017/admin
     ports:
@@ -24,8 +24,8 @@ services:
 
   microservicio2:
     build:
-      context: ./microservice2
-    container_name: microservice2
+      context: ./microservicio2
+    container_name: microservicio2
     # environment:
     #   - MONGO_URI=mongodb://admin:admin123@mongodb:27017/admin
     ports:
